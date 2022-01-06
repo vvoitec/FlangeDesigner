@@ -1,0 +1,13 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CProgram_0020Files_005CSOLIDWORKS_0020Corp_005CSOLIDWORKS_005Capi_005Credist_005CSolidWorks_002EInterop_002Ecosworks_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CProgram_0020Files_005CSOLIDWORKS_0020Corp_005CSOLIDWORKS_005Capi_005Credist_005CSolidWorks_002EInterop_002Esldworks_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/AddReferences/RecentPaths/=D_003A_005CProgram_0020Files_005CSOLIDWORKS_0020Corp_005CSOLIDWORKS_005Capi_005Credist_005CSolidWorks_002EInterop_002Eswconst_002Edll/@EntryIndexedValue">True</s:Boolean>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b75a102a_002D3152_002D4e57_002D9ed2_002D2135be99d385/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UnitTest1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;Or&gt;&#xD;
+    &lt;TestAncestor&gt;&#xD;
+      &lt;TestId&gt;xUnit::66A7CE69-463B-4640-A60B-75EFB1905C02::net5.0::FlangeDesigner.Tests.UnitTest1&lt;/TestId&gt;&#xD;
+      &lt;TestId&gt;xUnit::66A7CE69-463B-4640-A60B-75EFB1905C02::net5.0::FlangeDesigner.Tests.Infrastructure.Persistence.DapperProjectRepositoryTest&lt;/TestId&gt;&#xD;
+    &lt;/TestAncestor&gt;&#xD;
+    &lt;Project Location="D:\dev\FlangeDesigner\FlangeDesigner.Spec" Presentation="&amp;lt;FlangeDesigner.Spec&amp;gt;" /&gt;&#xD;
+  &lt;/Or&gt;&#xD;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.0.123" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+      <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
+      <PackageReference Include="System.Data.SQLite" Version="1.0.115.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="FlangeDesignerDB.db" />
+      <Content Include="FlangeDesignerDB.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FlangeDesigner.AbstractEngine\FlangeDesigner.AbstractEngine.csproj" />
+      <ProjectReference Include="..\FlangeDesigner.SolidWorksEngine\FlangeDesigner.SolidWorksEngine.csproj" />
+    </ItemGroup>
+
+</Project>
