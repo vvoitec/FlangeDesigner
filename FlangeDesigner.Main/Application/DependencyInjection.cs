@@ -12,6 +12,7 @@ namespace FlangeDesigner.Main.Application
         {
             services.AddTransient<IEngine, Engine>();
             services.AddTransient<IProjectFacade, ProjectFacade>();
+            services.AddTransient<ProjectLoader, ProjectLoader>();
 
             return services;
         }

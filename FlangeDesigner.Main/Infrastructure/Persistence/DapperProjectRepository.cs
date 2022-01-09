@@ -32,7 +32,7 @@ namespace FlangeDesigner.Main.Infrastructure.Persistence
         {
             using (IDbConnection cnn = new SQLiteConnection(_connectionString))
             {
-                var query = "INSERT INTO Projects(Name, Path) VALUES(@Name, @Path);";
+                var query = @"INSERT INTO projects(Name, Path) VALUES(@Name, @Path);";
                 cnn.Execute(query, project);
             }
         }
