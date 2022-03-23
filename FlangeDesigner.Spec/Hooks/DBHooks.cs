@@ -26,7 +26,7 @@ namespace FlangeDesigner.Spec.Hooks
         {
             using (IDbConnection cnn = new SQLiteConnection(_connectionString))
             {
-                cnn.Execute("delete from projects;");
+                cnn.Execute("DELETE FROM projects; DELETE FROM configurations;");
             }
         }
     }
