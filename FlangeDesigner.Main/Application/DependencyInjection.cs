@@ -11,8 +11,7 @@ namespace FlangeDesigner.Main.Application
         public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddTransient<IEngine, Engine>();
-            services.AddTransient<IProjectFacade, ProjectFacade>();
-            services.AddTransient<ProjectLoader, ProjectLoader>();
+            services.AddTransient<IProjectService, ProjectService>();
 
             return services;
         }

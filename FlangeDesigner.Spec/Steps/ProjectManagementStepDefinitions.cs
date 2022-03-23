@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -17,12 +18,12 @@ namespace FlangeDesigner.Spec.Steps
     [Binding]
     public class ProjectManagementStepDefinitions
     {
-        private readonly IProjectFacade _projectFacade;
+        private readonly IProjectService _projectFacade;
         private string _filePath;
         private string _projectName;
         private readonly string _connectionString;
 
-        public ProjectManagementStepDefinitions(IOptions<DapperRepositoryOptions> repositoryOptions, IProjectFacade projectFacade)
+        public ProjectManagementStepDefinitions(IOptions<DapperRepositoryOptions> repositoryOptions, IProjectService projectFacade)
         {
             _connectionString = repositoryOptions.Value.SqLite;
             _projectFacade = projectFacade;
@@ -52,14 +53,50 @@ namespace FlangeDesigner.Spec.Steps
         {
             using (IDbConnection cnn = new SQLiteConnection(_connectionString))
             {
-                var parameters = new DynamicParameters();
-                parameters.Add("@Path", _filePath, DbType.String);
+                var projectParameters = new DynamicParameters();
+                projectParameters.Add("@Path", _filePath, DbType.String);
                 
-                var result = cnn
-                    .Query<Project>("SELECT * FROM projects WHERE Path = @Path", parameters)
+                var projectResults = cnn
+                    .Query<Project>("SELECT * FROM projects WHERE Path = @Path", projectParameters)
                     .ToList();
                 
-                Assert.NotEmpty(result);
+                var project = projectResults[0];
+                
+                var configurationsParameters = new DynamicParameters();
+                configurationsParameters.Add("@ProjectId", project.Id, DbType.String);
+                
+                var configurationsResults = cnn
+                    .Query<Configuration>("SELECT * FROM configurations WHERE ProjectId = @ProjectId", configurationsParameters)
+                    .ToList();
+                
+                Assert.NotEmpty(configurationsResults);
+                
+            }
+        }
+
+        [Then(@"Project configurations are created")]
+        public void ThenProjectConfigurationsAreCreated()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(_connectionString))
+            {
+                var projectParameters = new DynamicParameters();
+                projectParameters.Add("@Path", _filePath, DbType.String);
+                
+                var projectResults = cnn
+                    .Query<Project>("SELECT * FROM projects WHERE Path = @Path", projectParameters)
+                    .ToList();
+                
+                var project = projectResults[0];
+                
+                var configurationsParameters = new DynamicParameters();
+                configurationsParameters.Add("@ProjectId", project.Id, DbType.String);
+                
+                var configurationsResults = cnn
+                    .Query<Configuration>("SELECT * FROM configurations WHERE ProjectId = @ProjectId", configurationsParameters)
+                    .ToList();
+                
+                Assert.NotEmpty(configurationsResults);
+                
             }
         }
     }

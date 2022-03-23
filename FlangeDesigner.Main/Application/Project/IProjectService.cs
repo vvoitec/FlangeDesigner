@@ -1,6 +1,6 @@
 ﻿namespace FlangeDesigner.Main.Application.Project
 {
-    public interface IProjectFacade
+    public interface IProjectService
     {
         public void LoadProject(string filePath);
     }

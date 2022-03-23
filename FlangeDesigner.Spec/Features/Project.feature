@@ -6,3 +6,10 @@ Scenario: Load project from file
     And SolidWorks project name is szablon
     When User loads the project
     Then New project is created
+    
+@clearDatabase
+Scenario: Project configurations are loaded
+    Given Global path to existing SolidWorks project is D:\dev\FlangeDesigner\FlangeDesigner.Main\szablon.sldprt
+    And SolidWorks project name is szablon
+    When User loads the project
+    Then Project configurations are created
