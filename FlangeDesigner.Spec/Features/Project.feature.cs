@@ -80,16 +80,16 @@ namespace FlangeDesigner.Spec.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Load project from file")]
+        [Xunit.SkippableFactAttribute(DisplayName="User loads project from file")]
         [Xunit.TraitAttribute("FeatureTitle", "Project management")]
-        [Xunit.TraitAttribute("Description", "Load project from file")]
+        [Xunit.TraitAttribute("Description", "User loads project from file")]
         [Xunit.TraitAttribute("Category", "clearDatabase")]
-        public virtual void LoadProjectFromFile()
+        public virtual void UserLoadsProjectFromFile()
         {
             string[] tagsOfScenario = new string[] {
                     "clearDatabase"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Load project from file", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User loads project from file", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -127,16 +127,14 @@ this.ScenarioInitialize(scenarioInfo);
             this.ScenarioCleanup();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="Project configurations are loaded")]
+        [Xunit.SkippableFactAttribute(DisplayName="Project configurations are created")]
         [Xunit.TraitAttribute("FeatureTitle", "Project management")]
-        [Xunit.TraitAttribute("Description", "Project configurations are loaded")]
-        [Xunit.TraitAttribute("Category", "clearDatabase")]
-        public virtual void ProjectConfigurationsAreLoaded()
+        [Xunit.TraitAttribute("Description", "Project configurations are created")]
+        public virtual void ProjectConfigurationsAreCreated()
         {
-            string[] tagsOfScenario = new string[] {
-                    "clearDatabase"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Project configurations are loaded", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Project configurations are created", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 11
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -169,6 +167,83 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 15
     testRunner.Then("Project configurations are created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [Xunit.SkippableFactAttribute(DisplayName="User can add project configuration")]
+        [Xunit.TraitAttribute("FeatureTitle", "Project management")]
+        [Xunit.TraitAttribute("Description", "User can add project configuration")]
+        public virtual void UserCanAddProjectConfiguration()
+        {
+            string[] tagsOfScenario = ((string[])(null));
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("User can add project configuration", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
+#line 17
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            bool isScenarioIgnored = default(bool);
+            bool isFeatureIgnored = default(bool);
+            if ((tagsOfScenario != null))
+            {
+                isScenarioIgnored = tagsOfScenario.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((this._featureTags != null))
+            {
+                isFeatureIgnored = this._featureTags.Where(__entry => __entry != null).Where(__entry => String.Equals(__entry, "ignore", StringComparison.CurrentCultureIgnoreCase)).Any();
+            }
+            if ((isScenarioIgnored || isFeatureIgnored))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+                TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table1.AddRow(new string[] {
+                            "D1@Szkic1",
+                            "10"});
+                table1.AddRow(new string[] {
+                            "D2@Szkic1",
+                            "10"});
+                table1.AddRow(new string[] {
+                            "D1@Dodanie-wyciągnięcie1",
+                            "10"});
+#line 18
+    testRunner.Given("Project named szablon contains following configuration", ((string)(null)), table1, "Given ");
+#line hidden
+                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table2.AddRow(new string[] {
+                            "D1@Szkic1",
+                            "15"});
+                table2.AddRow(new string[] {
+                            "D2@Szkic1",
+                            "15"});
+                table2.AddRow(new string[] {
+                            "D1@Dodanie-wyciągnięcie1",
+                            "15"});
+#line 23
+    testRunner.When("User adds a following configuration to project named szablon", ((string)(null)), table2, "When ");
+#line hidden
+                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                            "Key",
+                            "Value"});
+                table3.AddRow(new string[] {
+                            "D1@Szkic1",
+                            "15"});
+                table3.AddRow(new string[] {
+                            "D2@Szkic1",
+                            "15"});
+                table3.AddRow(new string[] {
+                            "D1@Dodanie-wyciągnięcie1",
+                            "15"});
+#line 28
+    testRunner.Then("Project named szablon contains following configuration", ((string)(null)), table3, "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

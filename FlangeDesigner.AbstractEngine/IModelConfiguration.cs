@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FlangeDesigner.AbstractEngine
 {
-    public interface IModelConfiguration : ICollection<Dimension>
+    public interface IModelConfiguration : IEnumerable<Dimension>
     {
         
     }

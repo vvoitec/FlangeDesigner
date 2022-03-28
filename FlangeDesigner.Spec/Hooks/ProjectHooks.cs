@@ -1,6 +1,8 @@
 ﻿using FlangeDesigner.AbstractEngine;
 using FlangeDesigner.Main.Domain.Entities;
+using FlangeDesigner.Spec.ValueRetrievers;
 using TechTalk.SpecFlow;
+using TechTalk.SpecFlow.Assist;
 
 namespace FlangeDesigner.Spec.Hooks
 {
@@ -22,6 +24,12 @@ namespace FlangeDesigner.Spec.Hooks
             var project = Project.Create(_engine);
             project.Load(projectPath);
             scenarioContext.Add("project", project);
+        }
+        
+        [BeforeTestRun]
+        public static void BeforeTestRun()
+        {
+            Service.Instance.ValueRetrievers.Register(new LengthValueRetriever());
         }
     }
 }

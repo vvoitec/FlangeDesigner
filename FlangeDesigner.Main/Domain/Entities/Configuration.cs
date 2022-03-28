@@ -16,12 +16,12 @@ namespace FlangeDesigner.Main.Domain.Entities
             return JsonConvert.DeserializeObject<IModelConfiguration>(Dimensions); 
         }
 
-        private Configuration(IModelConfiguration dimensions)
+        private Configuration(IEnumerable<Dimension> dimensions)
         {
             Dimensions = JsonConvert.SerializeObject(dimensions);
         }
 
-        public static Configuration FromDimensions(IModelConfiguration dimensions)
+        public static Configuration FromDimensions(IEnumerable<Dimension> dimensions)
         {
             return new Configuration(dimensions);
         }

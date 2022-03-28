@@ -64,5 +64,10 @@ namespace FlangeDesigner.SolidWorksEngine
 
             designTable.Detach();
         }
+
+        public void AddConfiguration(IModelConfiguration modelConfiguration)
+        {
+            
+        }
     }
 }

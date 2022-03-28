@@ -22,7 +22,7 @@ namespace FlangeDesigner.SolidWorksEngine
             {
                 throw new EngineException("Failed to create SldWorks instance");
             }
-            _swApp.Visible = true;
+            _swApp.Visible = false;
 
             return this;
         }
