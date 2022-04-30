@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using FlangeDesigner.AbstractEngine;
+using FlangeDesigner.Main.Infrastructure;
 using Newtonsoft.Json;
 
 namespace FlangeDesigner.Main.Domain.Entities
@@ -11,9 +12,9 @@ namespace FlangeDesigner.Main.Domain.Entities
         public Configuration()
         {}
 
-        public IModelConfiguration ListDimensions()
+        public IEnumerable<Dimension> ListDimensions()
         {
-            return JsonConvert.DeserializeObject<IModelConfiguration>(Dimensions); 
+            return JsonConvert.DeserializeObject<IEnumerable<Dimension>>(Dimensions, new LengthJsonConverter()); 
         }
 
         private Configuration(IEnumerable<Dimension> dimensions)

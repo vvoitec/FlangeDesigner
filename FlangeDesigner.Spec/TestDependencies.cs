@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using FlangeDesigner.Main.Application;
 using FlangeDesigner.Main.Infrastructure;
+using FlangeDesigner.Spec.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SolidToken.SpecFlow.DependencyInjection;
@@ -20,6 +21,7 @@ namespace FlangeDesigner.Spec
             var configuration = builder.Build();
             services.AddInfrastructure(configuration);
             services.AddApplication(configuration);
+            services.AddTransient<ProjectDao>();
 
             return services;
         }

@@ -26,4 +26,10 @@
       <ProjectReference Include="..\FlangeDesigner.SolidWorksEngine\FlangeDesigner.SolidWorksEngine.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="SolidWorks.Interop.swconst, Version=28.3.0.86, Culture=neutral, PublicKeyToken=19f43e188e4269d8">
+        <HintPath>..\..\..\Program Files\SOLIDWORKS Corp\SOLIDWORKS\api\redist\SolidWorks.Interop.swconst.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

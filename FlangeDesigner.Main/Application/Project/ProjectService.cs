@@ -1,4 +1,5 @@
 ﻿using FlangeDesigner.AbstractEngine;
+using FlangeDesigner.Main.Domain.Entities;
 using FlangeDesigner.Main.Domain.Repositories;
 
 namespace FlangeDesigner.Main.Application.Project
@@ -7,6 +8,7 @@ namespace FlangeDesigner.Main.Application.Project
     {
         private readonly IEngine _engine;
         private readonly IProjectRepository _repository;
+        public Domain.Entities.Project? Project { get; private set; }
 
         public ProjectService(IEngine engine, IProjectRepository repository)
         {
@@ -16,10 +18,26 @@ namespace FlangeDesigner.Main.Application.Project
 
         public void LoadProject(string filePath)
         {
-            var project = Domain.Entities.Project.Create(_engine);
-            project.Load(filePath);
+            Project = Domain.Entities.Project.Create(_engine);
+            
+            if (null == Project)
+            {
+                throw new RuntimeException("Project failed to load");
+            }
+            
+            Project.Load(filePath);
+            _repository.Save(Project);
+        }
 
-            _repository.Save(project);
+        public void UpdateConfiguration(Configuration configuration)
+        {
+            if (null == Project)
+            {
+                throw new RuntimeException("Cannot update configuration because project is not loaded");
+            }
+
+            Project.AddConfiguration(configuration);
+            _repository.Save(Project);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using FlangeDesigner.AbstractEngine;
+using FlangeDesigner.AbstractEngine.Exceptions;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 using Dimension = FlangeDesigner.AbstractEngine.Dimension;
@@ -17,7 +18,7 @@ namespace FlangeDesigner.SolidWorksEngine
         private int _filewarning;
         public string Name { get; }
         
-        public ICollection<IModelConfiguration> ProjectConfigurations { get; }
+        public ICollection<IEnumerable<Dimension>> ProjectConfigurations { get; }
         
         public Model(ModelDoc2 swDoc)
         {
@@ -40,7 +41,7 @@ namespace FlangeDesigner.SolidWorksEngine
                 headers.Add(cellText);
             }
 
-            ProjectConfigurations = new List<IModelConfiguration>();
+            ProjectConfigurations = new List<IEnumerable<Dimension>>();
             
             // collect data
             for (int row = 1; row < nRows + 1; row++)
@@ -65,9 +66,24 @@ namespace FlangeDesigner.SolidWorksEngine
             designTable.Detach();
         }
 
-        public void AddConfiguration(IModelConfiguration modelConfiguration)
+        public void AddConfiguration(IEnumerable<Dimension> modelConfiguration)
         {
-            
+            var designTable = (DesignTable) _swDoc.GetDesignTable();
+
+            string[] cells = modelConfiguration.Select(dimension => Convert.ToString(dimension.Value)).ToArray();
+            cells = new[] {"dupa"}.Concat(cells).ToArray(); // first element as empty string
+            designTable.Attach();
+            designTable.Warn = true;
+            designTable.EditTable2(true);
+            var err = designTable.AddRow(cells);
+            err = designTable.UpdateTable((int)swDesignTableUpdateOptions_e.swUpdateDesignTableAll, true);
+            // if (err)
+            // {
+            //     throw new ModelException("Failed to add configuration to design table: " + (swDesignTableErrors_e) designTable.LastError);
+            // }
+            designTable.Detach();
+
+            ProjectConfigurations.Add(modelConfiguration);
         }
     }
 }
