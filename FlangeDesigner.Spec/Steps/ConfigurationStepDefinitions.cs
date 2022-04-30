@@ -35,10 +35,10 @@ namespace FlangeDesigner.Spec.Steps
             _projectName = projectName;
         }
         
-        [Then(@"Project named (.*) contains following configuration")]
-        public void ProjectNamedContainsFollowingConfiguration(string projectName, Table table)
+        [Then(@"Project named (.*) contains configuration named (.*) with following dimensions")]
+        public void ProjectNamedContainsFollowingConfiguration(string projectName, string configurationName, Table table)
         {
-            var expectedConfiguration = Configuration.FromDimensions(table.CreateSet<Dimension>());
+            var expectedConfiguration = Configuration.FromDimensions(table.CreateSet<Dimension>(), configurationName);
             
             // var project = _projectDao.FindProjectsByName(projectName).First();
             // Assert.NotNull(project);
@@ -50,10 +50,10 @@ namespace FlangeDesigner.Spec.Steps
             Assert.Contains(configurations, configuration => configuration.Dimensions.Equals(expectedConfiguration.Dimensions));
         }
 
-        [When(@"User adds a following configuration to project named (.*)")]
-        public void WhenUserAddsAFollowingConfiguration(string projectName, Table table)
+        [When(@"User adds configuration named (.*) to project named (.*)")]
+        public void WhenUserAddsAFollowingConfiguration(string configurationName, string projectName, Table table)
         {
-            var configurationToAdd = Configuration.FromDimensions(table.CreateSet<Dimension>());
+            var configurationToAdd = Configuration.FromDimensions(table.CreateSet<Dimension>(), configurationName);
 
             _projectService.UpdateConfiguration(configurationToAdd);
         }

@@ -7,5 +7,6 @@ namespace FlangeDesigner.SolidWorksEngine
 {
     public class ModelConfiguration : List<Dimension>, IModelConfiguration
     {
+        public string Name { get; set; }
     }
 }

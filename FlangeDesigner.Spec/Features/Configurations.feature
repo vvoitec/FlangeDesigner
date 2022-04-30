@@ -5,12 +5,12 @@
     
         @clearDatabase
         Scenario: User can add project configuration
-            When User adds a following configuration to project named szablon
+            When User adds configuration named test to project named szablon
               | Key                      | Value |
               | D1@Szkic1                | 15    |
               | D2@Szkic1                | 15    |
               | D1@Dodanie-wyciągnięcie1 | 15    |
-            Then Project named szablon contains following configuration
+            Then Project named szablon contains configuration named test with following dimensions
               | Key                      | Value |
               | D1@Szkic1                | 15    |
               | D2@Szkic1                | 15    |

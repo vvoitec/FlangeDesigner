@@ -43,7 +43,7 @@ namespace FlangeDesigner.Main.Domain.Entities
             Path = filePath;
             Name = model.Name;
             Configurations = model.ProjectConfigurations
-                .Select(Configuration.FromDimensions)
+                .Select((modelConfiguration) => Configuration.FromDimensions(modelConfiguration, modelConfiguration.Name))
                 .ToList();
 
             return model;
@@ -55,7 +55,7 @@ namespace FlangeDesigner.Main.Domain.Entities
             
             Configurations.Add(configuration);
             var dimensions = configuration.ListDimensions();
-            _engine.Model.AddConfiguration(dimensions);
+            _engine.Model.AddConfiguration(dimensions, configuration.Name);
         }
 
         private void ValidateEngine()

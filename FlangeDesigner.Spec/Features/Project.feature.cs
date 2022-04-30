@@ -130,11 +130,9 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableFactAttribute(DisplayName="Project configurations are created")]
         [Xunit.TraitAttribute("FeatureTitle", "Project management")]
         [Xunit.TraitAttribute("Description", "Project configurations are created")]
-        [Xunit.TraitAttribute("Category", "clearDatabase")]
         public virtual void ProjectConfigurationsAreCreated()
         {
-            string[] tagsOfScenario = new string[] {
-                    "clearDatabase"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Project configurations are created", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 11

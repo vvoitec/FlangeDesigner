@@ -44,9 +44,9 @@ namespace FlangeDesigner.Main.Infrastructure.Persistence
                 foreach (Configuration projectConfiguration in project.Configurations)
                 {
                     cnn.Query<int>( @"
-                                                    INSERT OR IGNORE INTO configurations(ProjectId, Dimensions)
-                                                    VALUES (@ProjectId, @Dimensions) ",
-                        new { ProjectId = id, Dimensions = projectConfiguration.Dimensions });   
+                                                    INSERT OR IGNORE INTO configurations(ProjectId, Dimensions, Name)
+                                                    VALUES (@ProjectId, @Dimensions, @Name) ",
+                        new { ProjectId = id, Dimensions = projectConfiguration.Dimensions, Name = projectConfiguration.Name });   
                 }
 
                 project.Id = id;

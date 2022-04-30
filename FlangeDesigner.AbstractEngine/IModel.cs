@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace FlangeDesigner.AbstractEngine
@@ -7,8 +8,8 @@ namespace FlangeDesigner.AbstractEngine
     {
         public string Name { get; }
         
-        public ICollection<IEnumerable<Dimension>> ProjectConfigurations { get; }
+        public ICollection<IModelConfiguration> ProjectConfigurations { get; }
 
-        public void AddConfiguration(IEnumerable<Dimension> modelConfiguration);
+        public void AddConfiguration(IEnumerable<Dimension> modelConfiguration, string name);
     }
 }

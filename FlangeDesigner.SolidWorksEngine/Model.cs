@@ -18,7 +18,7 @@ namespace FlangeDesigner.SolidWorksEngine
         private int _filewarning;
         public string Name { get; }
         
-        public ICollection<IEnumerable<Dimension>> ProjectConfigurations { get; }
+        public ICollection<IModelConfiguration> ProjectConfigurations { get; }
         
         public Model(ModelDoc2 swDoc)
         {
@@ -41,12 +41,14 @@ namespace FlangeDesigner.SolidWorksEngine
                 headers.Add(cellText);
             }
 
-            ProjectConfigurations = new List<IEnumerable<Dimension>>();
+            ProjectConfigurations = new List<IModelConfiguration>();
             
             // collect data
             for (int row = 1; row < nRows + 1; row++)
             {
                 var modelConfiguration = new ModelConfiguration();
+                
+                modelConfiguration.Name = designTable.GetEntryText(row, 0);
                 
                 for (int column = 1; column < nColumns + 1; column++)
                 {
@@ -66,24 +68,18 @@ namespace FlangeDesigner.SolidWorksEngine
             designTable.Detach();
         }
 
-        public void AddConfiguration(IEnumerable<Dimension> modelConfiguration)
+        public void AddConfiguration(IEnumerable<Dimension> modelConfiguration, string name)
         {
             var designTable = (DesignTable) _swDoc.GetDesignTable();
 
             string[] cells = modelConfiguration.Select(dimension => Convert.ToString(dimension.Value)).ToArray();
-            cells = new[] {"dupa"}.Concat(cells).ToArray(); // first element as empty string
+            cells = new[] {name}.Concat(cells).ToArray(); // first element as empty string
             designTable.Attach();
             designTable.Warn = true;
-            designTable.EditTable2(true);
-            var err = designTable.AddRow(cells);
-            err = designTable.UpdateTable((int)swDesignTableUpdateOptions_e.swUpdateDesignTableAll, true);
-            // if (err)
-            // {
-            //     throw new ModelException("Failed to add configuration to design table: " + (swDesignTableErrors_e) designTable.LastError);
-            // }
+            designTable.EditTable2(false);
+            designTable.AddRow(cells);
+            designTable.UpdateTable((int)swDesignTableUpdateOptions_e.swUpdateDesignTableAll, true);
             designTable.Detach();
-
-            ProjectConfigurations.Add(modelConfiguration);
         }
     }
 }

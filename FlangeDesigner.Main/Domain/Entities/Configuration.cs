@@ -9,6 +9,8 @@ namespace FlangeDesigner.Main.Domain.Entities
     {
         public string Dimensions { get; }
         
+        public string Name { get; }
+        
         public Configuration()
         {}
 
@@ -17,14 +19,15 @@ namespace FlangeDesigner.Main.Domain.Entities
             return JsonConvert.DeserializeObject<IEnumerable<Dimension>>(Dimensions, new LengthJsonConverter()); 
         }
 
-        private Configuration(IEnumerable<Dimension> dimensions)
+        private Configuration(IEnumerable<Dimension> dimensions, string name)
         {
             Dimensions = JsonConvert.SerializeObject(dimensions);
+            Name = name;
         }
 
-        public static Configuration FromDimensions(IEnumerable<Dimension> dimensions)
+        public static Configuration FromDimensions(IEnumerable<Dimension> dimensions, string name)
         {
-            return new Configuration(dimensions);
+            return new Configuration(dimensions, name);
         }
     }
 }
